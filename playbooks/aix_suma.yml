@@ -1,6 +1,6 @@
 ---
 - name: “Running SUMA operations”
-  hosts: nim
+  hosts: all
   gather_facts: no
 
   collections:

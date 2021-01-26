@@ -1,6 +1,6 @@
 ---
 - name: List NIM nodes
-  hosts: nim
+  hosts: all 
   gather_facts: no
   become: yes
 
