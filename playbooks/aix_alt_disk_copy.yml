@@ -1,0 +1,15 @@
+---
+
+- name: perform altdisk copy
+  hosts: aix-node1
+  gather_facts: no
+
+  collections:
+    - ibm.power_aix
+  
+
+  tasks:
+    - name: Perform an alternate disk copy of the rootvg to hdisk1
+      alt_disk:
+        targets: hdisk1
+

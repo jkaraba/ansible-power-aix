@@ -1,0 +1,25 @@
+---
+- name: “Running SUMA operations”
+  hosts: nim
+  gather_facts: no
+
+  collections:
+  - ibm.power_aix
+
+  vars:
+    suma_action: preview
+    suma_oslevel: latest
+    suma_download_dir: /export/backups/suma_download
+
+  tasks:
+
+    - name: "AIX SUMA {{ suma_action }}"
+      suma:
+        action: "{{ suma_action }}"
+        description: "{{ suma_action }} available updates"
+        oslevel: "{{ suma_oslevel }}"
+        download_dir: "{{ suma_download_dir }}"
+        register: suma_output
+
+    - debug: var=suma_output
+

@@ -1,0 +1,17 @@
+---
+- name: List NIM nodes
+  hosts: nim
+  gather_facts: no
+  become: yes
+
+  vars:
+   nim_flag:  "-t"
+   nim_class: "standalone"
+   ansible_python_interpreter: auto_silent
+
+  tasks:
+    - name: List NIM Objects
+      command: lsnim {{ nim_flag }} {{ nim_class }}
+      register: nim_nodes
+
+    - debug: var=nim_nodes.stdout

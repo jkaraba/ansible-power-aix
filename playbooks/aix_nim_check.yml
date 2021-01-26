@@ -1,0 +1,15 @@
+---
+
+- name: perform nim check
+  hosts: nim
+  gather_facts: no
+
+  collections:
+    - ibm.power_aix
+
+  tasks:
+    - name: nim check
+      nim:
+        action: 'check'
+      register: nim_output
+    - debug: var=nim_output

@@ -1,0 +1,24 @@
+---
+- name: "NIM check for system updates"
+  hosts: nim
+  gather_facts: no
+
+  collections:
+    - ibm.power_aix
+
+  vars:
+    suma_action: preview
+    suma_targets: jk-aix-node1 
+    suma_oslevel:  Latest
+    suma_download_dir: /usr/sys/inst.images
+  
+  tasks:
+    - name: "AIX SUMA {{ suma_action }}"
+      nim_suma:
+        action: "{{ suma_action }}"
+        description: 'Preview available updates'
+        targets: "{{ suma_targets }}"
+        oslevel: "{{ suma_oslevel }}"
+        download_dir: "{{ suma_download_dir }}"
+      register: suma_output
+    - debug: var=suma_output
